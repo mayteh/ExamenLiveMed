@@ -1,0 +1,60 @@
+﻿@model ML.Usuario
+@{
+    ViewBag.Title = "GetUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+<h2>GetUser</h2>
+
+    <div class="row">
+        <table class="table table-responsive" id="myTable">
+            <thead bgcolor="PaleTurquoise">
+                <tr>
+                    <th>IdUsuario</th>
+                    <th>User</th>
+                    <th>IdCountry</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                @foreach (ML.Usuario usuario in Model.Usuarios)
+                {
+                    <tr>
+                        
+                        <td id="@usuario.UsuarioN" onclick="myFunction('@usuario.Id_usuario');"> @usuario.Id_usuario</td>
+                        
+
+                        <td id="@usuario.UsuarioN" onclick="myFunction('@usuario.UsuarioN')">@usuario.UsuarioN</td>
+                        <td id="@usuario.Country.Id_country" onclick="myFunction('@usuario.Country.Id_country')">@usuario.Country.Id_country</td>
+
+                        @if (usuario.Country.Name != null)
+                        {
+                            <td id="@usuario.Country.Name" onclick="myFunction('@usuario.Country.Name')">@usuario.Country.Name</td>
+                        }
+                        else
+                        {
+                            <td id="@usuario.Country.Name" onclick="myFunction('Desconocido')">@usuario.Country.Name Desconocido</td>
+                        }
+
+
+                    </tr>
+                 }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function myFunction(txt) {
+        alert("El valor es: " + txt);
+    }
+
+</script>
